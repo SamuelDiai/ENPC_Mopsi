@@ -6,8 +6,8 @@ int main()
 {
     std::vector<float> position_ini;
     position_ini.push_back(1.);
-    position_ini.push_back(1.);
     Trajectoire T(position_ini);
-    T.simule(30);
+    T.simule(200);
+    T.afficher();
     return 0;
 }

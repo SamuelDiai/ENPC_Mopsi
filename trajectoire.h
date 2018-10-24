@@ -28,11 +28,10 @@ class Trajectoire
     std::vector<std::vector<float> > list;
 public:
     Trajectoire(std::vector<float> position){position_initiale = position;
-                                    list.resize(1);
-                                    list.push_back(position);}
+                                            list.push_back(position);}
     void actualise();
     void simule(int N);
-
+    void afficher();
 };
 
 #endif // TRAJECTOIRE_H

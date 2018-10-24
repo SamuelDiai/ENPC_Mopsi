@@ -1,13 +1,12 @@
 #include "trajectoire.h"
-
+#include <iostream>
 float potentiel(std::vector<float> coords)
 {
-    return sin(coords[0])*cos(coords[1]);
+    return coords[0]*coords[0]*sin(coords[0]);
 }
 std::vector<float> gradient(std::vector<float> coords)
 {
     std::vector<float> res;
-    res.resize(coords.size());
     for(int i=0;i<coords.size();i++)
     {
         std::vector<float> epsilon;
@@ -18,6 +17,7 @@ std::vector<float> gradient(std::vector<float> coords)
         }
         epsilon[i]=1e-5;
         res.push_back((potentiel(coords+epsilon)-potentiel(coords-epsilon))/(2*1e-5));
+
     }
     return res;
 }
@@ -50,6 +50,7 @@ std::vector<float> operator-(std::vector<float> vec1,std::vector<float> vec2)
 std::vector<float>operator*(float coef,std::vector<float> vec)
 {
     std::vector<float> res;
+    res.resize(vec.size());
     for (int i=0;i<vec.size();i++)
     {
         res[i]=coef*vec[i];
@@ -62,12 +63,11 @@ void Trajectoire::actualise()
     std::default_random_engine generator;
     int dim = position_initiale.size();
     std::vector<float> G;
-    G.resize(dim);
     std::vector<float> last = list[list.size()-1];
     for (int i = 0;i<dim;i++)
     {
         std::normal_distribution<float> distribution( 0 , sqrt(dt));
-        G.push_back( sqrt(2*kb*T)*distribution(generator));
+        G.push_back(sqrt(2*kb*T)*distribution(generator));
     }
 
     std::vector<float> update = last + G + (-dt)*gradient(last);
@@ -79,6 +79,14 @@ void Trajectoire::simule(int N)
 {
     for( int i=0;i<N;i++)
     {
-        (*this).actualise();
+        actualise();
+    }
+}
+
+void Trajectoire::afficher()
+{
+    for( int i=0;i<list.size();i++)
+    {
+        std::cout<<(list[i])[0]<<std::endl;
     }
 }
