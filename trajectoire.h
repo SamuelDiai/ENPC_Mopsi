@@ -12,8 +12,8 @@ std::vector<float> gradient(std::vector<float> coords);
 
 // Constantes
 const float dt=0.1;
-const float T= 300;
-const float kb = 1.38e-23;
+const float T= 0.01;
+const float kb = 1;
 
 std::vector<float> operator+(std::vector<float> vec1,std::vector<float> vec2);
 std::vector<float> operator-(std::vector<float> vec1,std::vector<float> vec2);

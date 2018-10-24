@@ -2,7 +2,7 @@
 #include <iostream>
 float potentiel(std::vector<float> coords)
 {
-    return coords[0]*coords[0]*sin(coords[0]);
+    return sin(coords[0]);
 }
 std::vector<float> gradient(std::vector<float> coords)
 {
@@ -60,14 +60,15 @@ std::vector<float>operator*(float coef,std::vector<float> vec)
 
 void Trajectoire::actualise()
 {
-    std::default_random_engine generator;
+    std::random_device rd;
+    std::mt19937 gen(rd());
     int dim = position_initiale.size();
     std::vector<float> G;
     std::vector<float> last = list[list.size()-1];
     for (int i = 0;i<dim;i++)
     {
         std::normal_distribution<float> distribution( 0 , sqrt(dt));
-        G.push_back(sqrt(2*kb*T)*distribution(generator));
+        G.push_back(sqrt(2*kb*T)*distribution(gen));
     }
 
     std::vector<float> update = last + G + (-dt)*gradient(last);

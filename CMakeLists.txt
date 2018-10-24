@@ -1,4 +1,5 @@
+cmake_minimum_required(VERSION 2.8.12)
 PROJECT(MOPSI)
 add_executable(Mopsi main.cpp
-                     Particule.cpp Particule.h
                      Trajectoire.cpp Trajectoire.h)
+
