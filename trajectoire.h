@@ -1,0 +1,4 @@
+#ifndef TRAJECTOIRE_H
+#define TRAJECTOIRE_H
+
+#endif // TRAJECTOIRE_H
