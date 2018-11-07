@@ -2,7 +2,7 @@
 #include <iostream>
 float potentiel(std::vector<float> coords)
 {
-    return sin(coords[0]);
+    return sin(coords[1])*cos(coords[0]);
 }
 std::vector<float> gradient(std::vector<float> coords)
 {
